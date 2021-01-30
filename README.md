@@ -26,7 +26,7 @@ iconism({
        input: 'src/icons/svg',
       output: 'src/icons/dist',
        types: ['eot', 'ttf', 'woff', 'woff2', 'svg'],
-   	  assets: ['html', 'css']
+      assets: ['html', 'css'],
       height: 512,
      descent: 64,
     optimize: true,
