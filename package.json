@@ -1,6 +1,6 @@
 {
   "name": "iconism",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A complete fonts and web assets generator from svg icon files",
   "keywords": [
     "icon",
@@ -17,7 +17,8 @@
     "html",
     "assets",
     "fonts",
-    "font"
+    "font",
+    "webfont"
   ],
   "main": "lib/index.js",
   "bin": {
