@@ -84,10 +84,10 @@ Options:
 
 | option name    | type              | default                 | description                              |
 | -------------- | ----------------- | ----------------------- | ---------------------------------------- |
-| **`input`**    | `string|array`    | **`* required`**        | `svg files directories, files or config` |
+| **`input`**    | `string\|array`   | **`* required`**        | `svg files directories, files or config` |
 | **`output`**   | `string`          | **`required`**          | `output directory`                       |
 | **`config`**   | `string`          | `null`                  | `configuration file path`                |
-| **`name`**     | `string`          | `iconism`              | `font family`                            |
+| **`name`**     | `string`          | `iconism`               | `font family`                            |
 | **`id`**       | `string`          | `option.name`           | `font id`                                |
 | **`style`**    | `string`          | `normal`                | `font style`                             |
 | **`weight`**   | `integer|string`  | `400`                   | `font weight`                            |
@@ -107,7 +107,7 @@ Options:
 | **`selector`** | `string`          | `null`                  | `css selector`                           |
 | **`optimize`** | `bool`            | `true`                  | `optimize svg files`                     |
 | **`svgo`**     | `object`          | `null`                  | `svgo options`                           |
-| **`debug`**    | `function | bool` | `() => {}`              | `output all logging info`                |
+| **`debug`**    | `function\|bool`  | `() => {}`              | `output all logging info`                |
 
 All options are available except custom templates for web assets, font and asset filenames.
 Configuration file "-c" option will help you provide such a file path to meet your needs.
