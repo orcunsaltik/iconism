@@ -11,7 +11,7 @@ Available Assets:  **html, css, scss, sass, json, svg sprite**
 ## Install
 
 ``` bash
-npm install --save-dev iconism
+npm install -g iconism
 ```
 
 ## Usage

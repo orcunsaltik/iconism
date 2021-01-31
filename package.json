@@ -1,6 +1,6 @@
 {
   "name": "iconism",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "A complete fonts and web assets generator from svg icon files",
   "keywords": [
     "icon",
@@ -44,7 +44,7 @@
     "eslint": "^7.18.0",
     "eslint-plugin-node": "^11.1.0"
   },
-  "author": "Orçun Saltık <saltikorcun@gmail.com>",
+  "author": "OrÃ§un SaltÄ±k <saltikorcun@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/orcunsaltik/iconism.git"
