@@ -65,7 +65,7 @@ Options:
   -w, --width <int>         font width   (default: auto)
   -m, --metadata <value>    font metadata tag
   -r, --round <int>         svg path rounding (default: 1)
-  -b, --begin <value>       start unicode codepoint (default:0xEA01)
+  -b, --begin <value>       start unicode codepoint (default:0xE000)
   -t, --types <value...>    font types (default: eot, woff2, woff)
   -A, --assets <value...>   assets (default: css, html)
   -H, --hash                css hash           (default: true)
@@ -90,7 +90,7 @@ Options:
 | **`name`**     | `string`          | `iconism`               | `font family`                            |
 | **`id`**       | `string`          | `option.name`           | `font id`                                |
 | **`style`**    | `string`          | `normal`                | `font style`                             |
-| **`weight`**   | `integer|string`  | `400`                   | `font weight`                            |
+| **`weight`**   | `integer\|string` | `400`                   | `font weight`                            |
 | **`height`**   | `integer`         | `highest glyphs height` | `font height`                            |
 | **`width`**    | `integer`         | `auto`                  | `font width`                             |
 | **`ascent`**   | `integer`         | `height - descent`      | `font ascent`                            |
