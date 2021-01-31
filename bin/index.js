@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const commasp = (value) => value.split(',');
-const program = require('commander');
-const iconism = require('../lib/index');
+const commasp   = (value) => value.split(',');
+const {program} = require('commander');
+const iconism   = require('../lib/index');
 
 program
   .version(require('../package').version, '-v, --version', 'output the current version')
@@ -33,36 +33,37 @@ program
   .option('-D, --debug',             'output all logging information')
   .parse(process.argv);
 
+const opts = program.opts();
 
 (async () => {
         try {
             await iconism({
                    input: program.args,
-                  output: program.output,
-                  config: program.config,
-                    name: program.fontfamily,
-                      id: program.id,
-                   style: program.style,
-                  weight: program.weight,
-                  height: program.height,
-                   width: program.width,
-                  ascent: program.ascent,
-                 descent: program.descent,
-                metadata: program.metadata,
-                   round: program.round,
-                   begin: program.begin,
-                   types: program.types,
-                  assets: program.assets,
-                    hash: program.hash,
-                     tag: program.tag,
-                     url: program.url,
-                  prefix: program.prefix,
-                selector: program.selector,
-                optimize: program.optimize,
-                   debug: program.debug
+                  output: opts.output,
+                  config: opts.config,
+                    name: opts.fontfamily,
+                      id: opts.id,
+                   style: opts.style,
+                  weight: opts.weight,
+                  height: opts.height,
+                   width: opts.width,
+                  ascent: opts.ascent,
+                 descent: opts.descent,
+                metadata: opts.metadata,
+                   round: opts.round,
+                   begin: opts.begin,
+                   types: opts.types,
+                  assets: opts.assets,
+                    hash: opts.hash,
+                     tag: opts.tag,
+                     url: opts.url,
+                  prefix: opts.prefix,
+                selector: opts.selector,
+                optimize: opts.optimize,
+                   debug: opts.debug
             });
     } catch (e) {
-        if (program.debug) {
+        if (opts.debug) {
             console.log(e);
         }
     }
