@@ -192,11 +192,8 @@ module.exports = {
     },
     svgo: {
         plugins: [
-            {cleanupAttrs: true},
-            {removeDoctype: false},
-            {removeXMLProcInst: true},
-            {mergePaths: {force: false}},
-            {convertShapeToPath: {convertArcs: false}},
+            {name: 'mergePaths', params: {force: false}},
+            {name: 'convertShapeToPath', params: {convertArcs: false}},
         ]
     }
 };
