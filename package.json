@@ -1,6 +1,6 @@
 {
   "name": "iconism",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "description": "A complete fonts and web assets generator from svg icon files",
   "keywords": [
     "icon",
@@ -29,20 +29,20 @@
     "test": "npm run lint"
   },
   "dependencies": {
-    "commander": "^7.0.0",
+    "commander": "^7.1.0",
+    "ejs": "^3.1.6",
+    "glob": "^7.1.6",
+    "njfs": "^1.2.5",
+    "svg2ttf": "^5.1.0",
+    "svgo": "^2.2.2",
+    "svgpath": "^2.3.1",
     "ttf2eot": "^2.0.0",
     "ttf2woff": "^2.0.2",
-    "ttf2woff2": "^4.0.1",
-    "svg2ttf": "^5.0.0",
-    "xml2js": "^0.4.23",
-    "glob": "^7.1.6",
-    "svgpath": "^2.3.0",
-    "svgo": "^2.2.2",
-    "ejs": "^3.1.5",
-    "njfs": "^1.2.5"
+    "ttf2woff2": "^4.0.2",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
-    "eslint": "^7.18.0",
+    "eslint": "^7.22.0",
     "eslint-plugin-node": "^11.1.0"
   },
   "author": "Orçun Saltık <saltikorcun@gmail.com>",
