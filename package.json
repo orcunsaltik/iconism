@@ -40,7 +40,7 @@
 		"ttf2eot": "^2.0.0",
 		"ttf2woff": "^2.0.2",
 		"ttf2woff2": "^4.0.2",
-		"xml2js": "^0.4.23"
+		"xml2js": "^0.5.0"
 	},
 	"devDependencies": {
 		"eslint": "^7.22.0",
