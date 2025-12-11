@@ -6,7 +6,7 @@
 [![node-current](https://img.shields.io/node/v/iconism)](https://nodejs.org)
 [![license](https://img.shields.io/npm/l/iconism.svg)](LICENSE)
 
-> Modern font and customizable asset generator from SVG icons
+> Modern SVG icon font generator - Create TTF, WOFF, WOFF2, EOT fonts and web assets (CSS, SCSS, HTML, JSON, sprites) from SVG files with TypeScript support.
 
 A complete fonts and web assets generator that searches, optimizes, and merges SVG icon files from multiple directories or configuration files.
 
@@ -403,7 +403,13 @@ iconism -c iconism.config.js
 
 ## Changelog
 
-### v2.0.0 (2025)
+### v2.0.1 (2025)
+
+- 🚀 Updated SEO-friendly package description
+- 🚀 Enhanced keywords for better discoverability
+- 📚 Updated README with improved formatting
+
+### v2.0.0 (2024)
 
 #### 🚨 Breaking Changes
 
@@ -468,7 +474,7 @@ iconism -c iconism.config.js
 ## Migration from v1.x
 
 ```javascript
-// v1.x - Still works in v2.0.0
+// v1.x - Still works in v2.x
 iconism({
   input: 'icons',
   output: 'dist',

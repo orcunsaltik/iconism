@@ -1,7 +1,7 @@
 {
   "name": "iconism",
-  "version": "2.0.0",
-  "description": "A complete fonts and web assets generator from svg icon files",
+  "version": "2.0.1",
+  "description": "Modern SVG icon font generator - Create TTF, WOFF, WOFF2, EOT fonts and web assets (CSS, SCSS, HTML, JSON, sprites) from SVG files with TypeScript support.",
   "keywords": [
     "icon",
     "icons",
@@ -21,7 +21,10 @@
     "webfont",
     "svg-font",
     "font-generator",
-    "icon-font"
+    "icon-font",
+    "typescript",
+    "svg-icons",
+    "icon-generator"
   ],
   "main": "lib/index.js",
   "types": "iconism.d.ts",
