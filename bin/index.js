@@ -7,7 +7,9 @@ const iconism = require('../lib/index');
 program
   .version(require('../package').version, '-v, --version', 'output the current version')
   .usage('[options]<input path...>')
-  .description('Convert svg icons to svg, ttf, woff, woff2 and eot font formats and generate web assets.')
+  .description(
+    'Convert svg icons to svg, ttf, woff, woff2 and eot font formats and generate web assets.'
+  )
   .helpOption('-e, --help', 'display help for command')
   .option('-o, --output <value>', 'output directory')
   .option('-c, --config <value>', 'configuration file')
@@ -60,7 +62,7 @@ const opts = program.opts();
       prefix: opts.prefix,
       selector: opts.selector,
       optimize: opts.optimize,
-      debug: opts.debug
+      debug: opts.debug,
     });
   } catch (e) {
     if (opts.debug) {
