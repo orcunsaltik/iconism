@@ -1,53 +1,106 @@
-[![Build Status](https://travis-ci.com/orcunsaltik/iconism.svg?branch=master)](https://travis-ci.com/orcunsaltik/iconism)[![Dependency Status](https://david-dm.org/orcunsaltik/iconism.svg)](https://david-dm.org/orcunsaltik/iconism)[![devDependencies Status](https://david-dm.org/orcunsaltik/iconism/dev-status.svg)](https://david-dm.org/orcunsaltik/iconism?type=dev)[![Maintainability](https://api.codeclimate.com/v1/badges/035ff3499e767eb6b552/maintainability)](https://codeclimate.com/github/orcunsaltik/iconism/maintainability)[![NPM Version](https://badge.fury.io/js/iconism.svg?style=flat)](https://npmjs.org/package/iconism)[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/orcunsaltik/iconism/issues)![node-current](https://img.shields.io/node/v/iconism)
+# iconism
 
-# Iconism
+[![CI](https://github.com/orcunsaltik/iconism/actions/workflows/ci.yml/badge.svg)](https://github.com/orcunsaltik/iconism/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/iconism.svg)](https://www.npmjs.com/package/iconism)
+[![npm downloads](https://img.shields.io/npm/dt/iconism.svg)](https://www.npmjs.com/package/iconism)
+[![node-current](https://img.shields.io/node/v/iconism)](https://nodejs.org)
+[![license](https://img.shields.io/npm/l/iconism.svg)](LICENSE)
 
-A modern font and customizable asset generator in various formats by searching, optimizing and finally merging svg icon files from multiple directories or a configuration file that contains required properties.
+> Modern font and customizable asset generator from SVG icons
 
-Available Font Types:  **svg, ttf, woff, woff2, eot.**
+A complete fonts and web assets generator that searches, optimizes, and merges SVG icon files from multiple directories or configuration files.
 
-Available Assets:  **html, css, scss, sass, json, svg sprite**
+## Features
 
-## Install
+- ✅ Multiple font formats: **SVG, TTF, WOFF, WOFF2, EOT**
+- ✅ Web assets: **HTML, CSS, SCSS, SASS, JSON, SVG Sprite**
+- ✅ CLI and programmatic API
+- ✅ **TypeScript support** with complete type definitions
+- ✅ **Modern demo page** with dark mode, search, and copy-to-clipboard
+- ✅ **CSS utilities** (size, rotate, flip, spin animations)
+- ✅ **SCSS/SASS mixins** for flexible icon usage
+- ✅ SVG optimization with SVGO
+- ✅ Custom templates support
+- ✅ Unicode codepoint mapping
+- ✅ Zero configuration defaults
 
-``` bash
+## Requirements
+
+- Node.js >= 18.0.0
+
+## Installation
+
+### Global (CLI)
+
+```bash
 npm install -g iconism
+```
+
+### Local (API)
+
+```bash
+npm install --save-dev iconism
 ```
 
 ## Usage
 
-### In Scripts
+### TypeScript
 
-```js
+iconism comes with full TypeScript support:
+
+```typescript
+import iconism, { IconismOptions } from 'iconism';
+
+const options: IconismOptions = {
+  name: 'myicons',
+  input: 'src/icons/*.svg',
+  output: 'dist/fonts',
+  types: ['woff2', 'woff', 'ttf'],
+  assets: ['css', 'scss', 'html'],
+  optimize: true,
+};
+
+await iconism(options);
+```
+
+### Programmatic API
+
+```javascript
 const iconism = require('iconism');
 
+// Basic usage
 iconism({
-        name: 'myicons',
-       input: 'src/icons/svg',
-      output: 'src/icons/dist',
-       types: ['eot', 'ttf', 'woff', 'woff2', 'svg'],
-      assets: ['html', 'css'],
-      height: 512,
-     descent: 64,
-    optimize: true,
+  name: 'myicons',
+  input: 'src/icons/svg',
+  output: 'dist/fonts',
+  types: ['woff2', 'woff', 'ttf'],
+  assets: ['html', 'css'],
+  height: 512,
+  descent: 64,
+  optimize: true,
 });
 
-// in an async function
-const styler = async () => {
-    await iconism({
-        ...
-    });
-}
+// Async/await
+const generate = async () => {
+  await iconism({
+    name: 'icons',
+    input: 'icons/*.svg',
+    output: 'build',
+    types: ['woff2', 'woff'],
+    assets: ['css', 'scss'],
+  });
+  console.log('Icons generated!');
+};
 
+generate();
 ```
 
 ### Command-line Interface
 
-
-```
+```bash
 iconism --help
 
-Usage: index [options]<input path...>
+Usage: iconism [options] <input path...>
 
 Convert svg icons to svg, ttf, woff, woff2 and eot font formats and generate web assets.
 
@@ -65,153 +118,387 @@ Options:
   -w, --width <int>         font width   (default: auto)
   -m, --metadata <value>    font metadata tag
   -r, --round <int>         svg path rounding (default: 1)
-  -b, --begin <value>       start unicode codepoint (default:0xE000)
-  -t, --types <value...>    font types (default: eot, woff2, woff)
+  -b, --begin <value>       start unicode codepoint (default: 0xE000)
+  -t, --types <value...>    font types (default: woff2, woff, ttf)
   -A, --assets <value...>   assets (default: css, html)
-  -H, --hash                css hash           (default: true)
-  -T, --tag <value>         css tag            (default: null)
-  -u, --url <value>         font directory url (default: true)
-  -p, --prefix <value>      css prefix class   (default: i)
-  -S, --selector <value>    css selector       (default: null)
-  -O, --optimize            optimize svgs: svgo
+  -H, --hash                css hash (default: false)
+  -T, --tag <value>         css tag (default: null)
+  -u, --url <value>         font directory url (default: null)
+  -p, --prefix <value>      css prefix class (default: i)
+  -S, --selector <value>    css selector (default: null)
+  -O, --optimize            optimize svgs with svgo
   -D, --debug               output all information
   -e, --help                display help for command
 ```
 
-## API
+#### CLI Examples
 
-## iconism(options)
+```bash
+# Generate fonts from directory
+iconism -o dist/fonts src/icons/*.svg
 
-| option name    | type              | default                 | description                              |
-| -------------- | ----------------- | ----------------------- | ---------------------------------------- |
-| **`input`**    | `string\|array`   | **`* required`**        | `svg files directories, files or config` |
-| **`output`**   | `string`          | **`required`**          | `output directory`                       |
-| **`config`**   | `string`          | `null`                  | `configuration file path`                |
-| **`name`**     | `string`          | `iconism`               | `font family`                            |
-| **`id`**       | `string`          | `option.name`           | `font id`                                |
-| **`style`**    | `string`          | `normal`                | `font style`                             |
-| **`weight`**   | `integer\|string` | `400`                   | `font weight`                            |
-| **`height`**   | `integer`         | `highest glyphs height` | `font height`                            |
-| **`width`**    | `integer`         | `auto`                  | `font width`                             |
-| **`ascent`**   | `integer`         | `height - descent`      | `font ascent`                            |
-| **`descent`**  | `integer`         | `0`                     | `font descent`                           |
-| **`metadata`** | `string`          | `null`                  | `font metadata / copyright`              |
-| **`round`**    | `integer`         | `1`                     | `svg path rounding (0-99)`               |
-| **`begin`**    | `integer`         | `0xE000`                | `first glyph unicode`                    |
-| **`types`**    | `array`           | `['woff','ttf','svg']`  | `font types to be generated`             |
-| **`assets`**   | `array`           | `['html','css']`        | `web assets to be generated`             |
-| **`hash`**     | `bool`            | `false`                 | `css & font hash for cache`              |
-| **`tag`**      | `string`          | `null`                  | `css tag`                                |
-| **`url`**      | `string`          | `null`                  | `font directory path in css file`        |
-| **`prefix`**   | `string`          | `i`                     | `css class prefix`                       |
-| **`selector`** | `string`          | `null`                  | `css selector`                           |
-| **`optimize`** | `bool`            | `true`                  | `optimize svg files`                     |
-| **`svgo`**     | `object`          | `null`                  | `svgo options`                           |
-| **`debug`**    | `function\|bool`  | `() => {}`              | `output all logging info`                |
+# Generate with specific types
+iconism -o dist -t woff2 woff -A css scss src/icons/*.svg
 
-All options are available except custom templates for web assets, font and asset filenames.
-Configuration file "-c" option will help you provide such a file path to meet your needs.
-
-### Input Option Examples
-
-#### Directory
-
-```
-input: '../icons',...
+# Use configuration file
+iconism -c iconism.config.js -o dist src/icons/*.svg
 ```
 
+## API Reference
 
-#### Directories and files
+### iconism(options)
 
+| Option         | Type              | Default                  | Description                              |
+| -------------- | ----------------- | ------------------------ | ---------------------------------------- |
+| **`input`**    | `string\|array`   | **`* required`**         | SVG files directories, files or config   |
+| **`output`**   | `string`          | **`* required`**         | Output directory                         |
+| **`config`**   | `string`          | `null`                   | Configuration file path                  |
+| **`name`**     | `string`          | `iconism`                | Font family name                         |
+| **`id`**       | `string`          | `option.name`            | Font ID                                  |
+| **`style`**    | `string`          | `normal`                 | Font style                               |
+| **`weight`**   | `integer\|string` | `400`                    | Font weight                              |
+| **`height`**   | `integer`         | `max glyph height`       | Font height                              |
+| **`width`**    | `integer`         | `auto`                   | Font width                               |
+| **`ascent`**   | `integer`         | `height - descent`       | Font ascent                              |
+| **`descent`**  | `integer`         | `0`                      | Font descent                             |
+| **`metadata`** | `string`          | `null`                   | Font metadata / copyright                |
+| **`round`**    | `integer`         | `1`                      | SVG path rounding (0-99)                 |
+| **`begin`**    | `integer`         | `0xE000`                 | First glyph unicode codepoint            |
+| **`types`**    | `array`           | `['woff2','woff','ttf']` | Font types to generate                   |
+| **`assets`**   | `array`           | `['html','css']`         | Web assets to generate                   |
+| **`hash`**     | `boolean`         | `false`                  | Add hash to CSS & font for cache busting |
+| **`tag`**      | `string`          | `null`                   | CSS tag                                  |
+| **`url`**      | `string`          | `null`                   | Font directory URL in CSS                |
+| **`prefix`**   | `string`          | `i`                      | CSS class prefix                         |
+| **`selector`** | `string`          | `null`                   | CSS selector                             |
+| **`optimize`** | `boolean`         | `true`                   | Optimize SVG files with SVGO             |
+| **`svgo`**     | `object`          | `null`                   | Custom SVGO options                      |
+| **`debug`**    | `function\|bool`  | `() => {}`               | Debug logging function                   |
+
+## Input Options
+
+### Directory
+
+```javascript
+iconism({
+  input: 'src/icons',
+  output: 'dist',
+});
 ```
-input: ['../icons', '../svg/icons', 'angle-down.svg', 'add.svg'],...
+
+### Multiple Directories and Files
+
+```javascript
+iconism({
+  input: ['src/icons', 'assets/svg', 'icons/arrow.svg', 'icons/check.svg'],
+  output: 'dist',
+});
 ```
 
+### JSON Configuration File
 
-#### Path to svg icons configuration file
-
-```
-input: '../icons/glyphs.json',...
-```
-
-
-#### Configuration
-
-```
-input: [
-        {
-            "name": "angle-down",
-            "unicode": "\uE100",
-            "path": "../icons/angle-down.svg"
-        },
-        {
-            "name": "angle-down-circle",
-            "unicode": "\uE101",
-            "path": "../icons/angle-down-circle.svg"
-        }
-	...
- ]
+```javascript
+iconism({
+  input: 'icons/config.json',
+  output: 'dist',
+});
 ```
 
+**icons/config.json:**
 
-#### Configuration with all properties
-
-```
-input: [
-        {
-               "name": "plus",
-            "unicode": "\uE100",
-            	  "d": "M7,9H4V7H7V4H9V7h3V9H9v3H7Z",
-              "width": 512,
-             "height": 512,
-             viewPort: "0 0 512 512"
-        },
-	...
+```json
+[
+  {
+    "name": "arrow-down",
+    "unicode": "\uE100",
+    "path": "icons/arrow-down.svg"
+  },
+  {
+    "name": "arrow-up",
+    "unicode": "\uE101",
+    "path": "icons/arrow-up.svg"
+  }
 ]
 ```
 
-### All options separate configuration file example
+### Enhanced JSON Output
 
-```
-module.exports = {
-    templates: {
-        sprite: "src/my-templates/sprite.ejs"
+When generating JSON assets, you get rich metadata:
+
+```json
+{
+  "name": "myicons",
+  "version": "1.0.0",
+  "prefix": "i",
+  "icons": {
+    "arrow-down": {
+      "unicode": 57600,
+      "hex": "e100",
+      "character": "",
+      "className": "i-arrow-down"
     },
-    font: {
-        names: {
-            svg: "%name%-svg",
-            eot: "ie%name%",
-        },
-        exports: ["woff2", "woff", "ttf"]
-    },
-    asset: {
-        names: {
-            sprite: "%name%-sprite"
-        },
-        exports: ["sass", "scss", "sprite"]
-    },
-    svgo: {
-        plugins: [
-            {name: 'mergePaths', params: {force: false}},
-            {name: 'convertShapeToPath', params: {convertArcs: false}},
-        ]
+    "arrow-up": {
+      "unicode": 57601,
+      "hex": "e101",
+      "character": "",
+      "className": "i-arrow-up"
     }
+  }
+}
+```
+
+### Inline Configuration
+
+```javascript
+iconism({
+  input: [
+    {
+      name: 'plus',
+      unicode: '\uE100',
+      d: 'M7,9H4V7H7V4H9V7h3V9H9v3H7Z',
+      width: 512,
+      height: 512,
+      viewBox: '0 0 512 512',
+    },
+    {
+      name: 'minus',
+      unicode: '\uE101',
+      path: 'icons/minus.svg',
+    },
+  ],
+  output: 'dist',
+});
+```
+
+## Advanced Configuration
+
+### CSS Utilities
+
+Generated CSS includes helpful utility classes:
+
+```css
+/* Size utilities */
+.i-sm {
+  font-size: 0.75em;
+}
+.i-lg {
+  font-size: 1.25em;
+}
+.i-xl {
+  font-size: 1.5em;
+}
+.i-2x {
+  font-size: 2em;
+}
+.i-3x {
+  font-size: 3em;
+}
+
+/* Rotate utilities */
+.i-rotate-90 {
+  transform: rotate(90deg);
+}
+.i-rotate-180 {
+  transform: rotate(180deg);
+}
+.i-rotate-270 {
+  transform: rotate(270deg);
+}
+
+/* Flip utilities */
+.i-flip-horizontal {
+  transform: scaleX(-1);
+}
+.i-flip-vertical {
+  transform: scaleY(-1);
+}
+```
+
+**Usage:**
+
+```html
+<span class="i i-arrow-down i-2x i-rotate-90"></span>
+```
+
+### SCSS Mixins
+
+Generated SCSS includes powerful mixins:
+
+```scss
+// Use icon by name
+.my-button {
+  @include icon('arrow-down');
+  @include icon-size(1.5rem);
+  @include icon-rotate(45);
+}
+
+// Flip icon
+.back-button {
+  @include icon('arrow-right');
+  @include icon-flip(horizontal);
+}
+
+// Spin animation
+.loading-icon {
+  @include icon('spinner');
+}
+.loading-icon.i-spin {
+  animation: i-spin 2s linear infinite;
+}
+```
+
+### Modern Demo Page
+
+The generated HTML demo includes:
+
+- 🌙 **Dark mode** with persistent preference
+- 🔍 **Real-time search** - Filter icons instantly
+- 📋 **Copy to clipboard** - Click any icon to copy its class name
+- 📱 **Responsive design** - Works on all devices
+- ⌨️ **Keyboard shortcuts** - `/` to search, `Esc` to clear
+- 📊 **Live stats** - See total and visible icon counts
+- 🎨 **Grid/List views** - Toggle between layouts
+
+## Advanced Configuration
+
+Create an `iconism.config.js` file for advanced options:
+
+```javascript
+module.exports = {
+  name: 'custom-icons',
+  input: 'src/icons',
+  output: 'dist/fonts',
+  types: ['woff2', 'woff', 'ttf'],
+  assets: ['sass', 'scss', 'sprite'],
+  templates: {
+    sprite: 'templates/sprite.ejs',
+  },
+  font: {
+    names: {
+      svg: '%name%-svg',
+      woff2: '%name%-webfont',
+    },
+    exports: ['woff2', 'woff', 'ttf'],
+  },
+  asset: {
+    names: {
+      sprite: '%name%-sprite',
+    },
+    exports: ['sass', 'scss', 'sprite'],
+  },
+  svgo: {
+    plugins: [
+      { name: 'mergePaths', params: { force: false } },
+      { name: 'convertShapeToPath', params: { convertArcs: false } },
+    ],
+  },
 };
+```
+
+Then run:
+
+```bash
+iconism -c iconism.config.js
+```
+
+## Changelog
+
+### v2.0.0 (2025)
+
+#### 🚨 Breaking Changes
+
+- **BREAKING:** Requires Node.js 18+
+
+#### ✨ New Features
+
+- **TypeScript Support:** Complete type definitions (`iconism.d.ts`)
+- **Modern Demo Page:**
+  - Dark mode with localStorage persistence
+  - Real-time icon search and filtering
+  - Copy to clipboard functionality
+  - Grid and list view toggles
+  - Keyboard shortcuts (`/` for search, `Esc` to clear)
+  - Live icon statistics
+  - Responsive mobile-first design
+- **CSS Utilities:** Size, rotate, flip, and spin animations
+- **SCSS/SASS Mixins:** `@include icon()`, `@include icon-size()`, `@include icon-rotate()`, `@include icon-flip()`
+- **Enhanced JSON Output:** Rich metadata with unicode, hex, character, and className
+
+#### 🐛 Bug Fixes
+
+- **CRITICAL:** Fixed SVG sprite closing tag bug (`<svg>` → `</svg>`)
+- Fixed 87 ESLint issues across the codebase
+- Fixed async Promise executor anti-patterns (7 instances)
+- Fixed path concatenation issues (8 instances, now using `path.join()`)
+- Fixed tab/space inconsistencies (50+ instances)
+- Fixed mixed operator precedence issues (6 instances)
+
+#### 📦 Dependency Updates
+
+- Updated njfs: 1.2.5 → 2.0.0
+- Updated svg2ttf: 5.1.0 → 6.0.3
+- Updated ttf2eot: 2.0.0 → 3.1.0
+- Updated ttf2woff: 2.0.2 → 3.0.0
+- Updated ttf2woff2: 4.0.2 → 5.0.0
+- Updated svgo: 2.2.2 → 2.8.0
+- Updated ejs: 3.1.6 → 3.1.10
+- Updated xml2js: 0.4.23 → 0.6.2
+
+#### 🔧 Development
+
+- Added Prettier for consistent code formatting
+- Modern ESLint 8 configuration with standard config
+- Travis CI → GitHub Actions (Node 18/20/22)
+- Added `.vscode/settings.json` for better IDE support
+- Comprehensive `.prettierrc` and `.editorconfig`
+
+#### 📚 Documentation
+
+- Completely rewritten README with modern examples
+- Added TypeScript usage examples
+- Added CSS utilities documentation
+- Added SCSS mixins documentation
+- Added demo page features documentation
+- Updated badges (CI, npm version, downloads)
+
+### v1.2.3 (2021)
+
+- Previous stable release
+
+## Migration from v1.x
+
+```javascript
+// v1.x - Still works in v2.0.0
+iconism({
+  input: 'icons',
+  output: 'dist',
+});
+
+// v2.x - Now requires Node.js 18+
+// All other APIs remain the same
 ```
 
 ## Contributing
 
-All contributions are welcome.
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## Troubleshooting
 
-When you encounter a problem, please open an issue. I would be glad to help you to find a solution if possible.
+When you encounter a problem, please [open an issue](https://github.com/orcunsaltik/iconism/issues).
 
 ## Author
 
-Orçun Saltık. Github: [@orcunsaltik](https://github.com/orcunsaltik)
+**Orçun Saltık**
+
+- GitHub: [@orcunsaltik](https://github.com/orcunsaltik)
+- Email: saltikorcun@gmail.com
 
 ## License
 
-See the [LICENSE](LICENSE) file for license rights and limitations (MIT).
-
+[MIT](LICENSE) © Orçun Saltık

@@ -1,65 +1,74 @@
 {
-	"name": "iconism",
-	"version": "1.2.3",
-	"description": "A complete fonts and web assets generator from svg icon files",
-	"keywords": [
-		"icon",
-		"icons",
-		"svg",
-		"ttf",
-		"woff",
-		"woff2",
-		"eot",
-		"css",
-		"scss",
-		"sass",
-		"json",
-		"html",
-		"assets",
-		"fonts",
-		"font",
-		"webfont"
-	],
-	"main": "lib/index.js",
-	"bin": {
-		"iconism": "bin/index.js"
-	},
-	"scripts": {
-		"lint": "eslint **/*.js --fix -o eslint.log -f unix",
-		"test": "npm run lint"
-	},
-	"dependencies": {
-		"commander": "^7.1.0",
-		"ejs": "^3.1.6",
-		"extend": "^3.0.2",
-		"glob": "^7.1.6",
-		"njfs": "^1.2.5",
-		"svg2ttf": "^5.1.0",
-		"svgo": "^2.2.2",
-		"svgpath": "^2.3.1",
-		"ttf2eot": "^2.0.0",
-		"ttf2woff": "^2.0.2",
-		"ttf2woff2": "^4.0.2",
-		"xml2js": "^0.4.23"
-	},
-	"devDependencies": {
-		"eslint": "^7.22.0",
-		"eslint-plugin-node": "^11.1.0"
-	},
-	"author": "Orçun Saltık <saltikorcun@gmail.com>",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/orcunsaltik/iconism.git"
-	},
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/orcunsaltik/iconism/issues"
-	},
-	"homepage": "https://github.com/orcunsaltik/iconism#readme",
-	"directories": {
-		"lib": "lib"
-	},
-	"engines": {
-		"node": ">= 10.22.1"
-	}
+  "name": "iconism",
+  "version": "2.0.0",
+  "description": "A complete fonts and web assets generator from svg icon files",
+  "keywords": [
+    "icon",
+    "icons",
+    "svg",
+    "ttf",
+    "woff",
+    "woff2",
+    "eot",
+    "css",
+    "scss",
+    "sass",
+    "json",
+    "html",
+    "assets",
+    "fonts",
+    "font",
+    "webfont",
+    "svg-font",
+    "font-generator",
+    "icon-font"
+  ],
+  "main": "lib/index.js",
+  "types": "iconism.d.ts",
+  "bin": {
+    "iconism": "bin/index.js"
+  },
+  "scripts": {
+    "lint": "eslint **/*.js",
+    "lint:fix": "eslint **/*.js --fix",
+    "test": "npm run lint"
+  },
+  "dependencies": {
+    "commander": "^7.2.0",
+    "ejs": "^3.1.10",
+    "extend": "^3.0.2",
+    "glob": "^7.2.3",
+    "njfs": "^2.0.0",
+    "svg2ttf": "^6.0.3",
+    "svgo": "^2.8.0",
+    "svgpath": "^2.6.0",
+    "ttf2eot": "^3.1.0",
+    "ttf2woff": "^3.0.0",
+    "ttf2woff2": "^5.0.0",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^3.2.5"
+  },
+  "author": "Orçun Saltık <saltikorcun@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orcunsaltik/iconism.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/orcunsaltik/iconism/issues"
+  },
+  "homepage": "https://github.com/orcunsaltik/iconism#readme",
+  "directories": {
+    "lib": "lib"
+  },
+  "engines": {
+    "node": ">= 18.0.0"
+  }
 }

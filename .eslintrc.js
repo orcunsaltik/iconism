@@ -1,16 +1,16 @@
 module.exports = {
-    env: {
-        node: true
-    },
-    extends: [
-             'eslint:recommended',
-        'plugin:node/recommended'
-    ],
-    parserOptions: {
-        ecmaVersion: 9
-    },
-    rules: {
-         'no-mixed-spaces-and-tabs': 0,
-        'no-async-promise-executor': 0
-    }
+  env: {
+    es2022: true,
+    node: true,
+  },
+  extends: ['standard', 'plugin:node/recommended'],
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
+  },
+  rules: {
+    'space-before-function-paren': 'off',
+    'comma-dangle': ['error', 'only-multiline'],
+    semi: ['error', 'always'],
+  },
 };
